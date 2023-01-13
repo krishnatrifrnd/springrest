@@ -14,51 +14,47 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.springrest.springrest.entity.Course;
-import com.springrest.springrest.services.CourseService;
+import com.springrest.springrest.entity.Users;
+import com.springrest.springrest.services.UsersService;
 
 @RestController
 public class MyController {
 
-
 	@Autowired
-	private CourseService courseservice;
-	
-	//Get the courses
-	@GetMapping("/courses")
-	public List<Course> getCourses(){
-		return this.courseservice.getCourses();
+	private UsersService Usersservice;
+
+	// Get the User
+	@GetMapping("/Users")
+	public List<Users> getUserss() {
+		return this.Usersservice.getUserss();
 	}
-	//get single course
-	@GetMapping("/courses/{courseId}")
-	public Optional<Course> getcourse(@PathVariable String courseId) {
-		return this.courseservice.getCourse(Long.parseLong(courseId));
+
+	// get single User
+	@GetMapping("/Users/{UsersId}")
+	public Optional<Users> getUsers(@PathVariable String UsersId) {
+		return this.Usersservice.getUsers(Long.parseLong(UsersId));
 	}
-	//Create new course
-	@PostMapping(path="/courses",consumes="application/json")
-	public Course addCourse(@RequestBody Course course) {
-		return this.courseservice.addCourse(course);
-	}	
-	//Update course
-	@PutMapping("/courses")
-	public Course updateCourse(@RequestBody Course course) {
-		return this.courseservice.updateCourse(course);
+
+	// Create new User
+	@PostMapping(path = "/Users", consumes = "application/json")
+	public Users addUsers(@RequestBody Users Users) {
+		return this.Usersservice.addUsers(Users);
 	}
-	//delete course
-	@DeleteMapping("/courses/{courseId}")
-	public ResponseEntity<HttpStatus> deleteCourse(@PathVariable String courseId){
+
+	// Update User
+	@PutMapping("/Users")
+	public Users updateUsers(@RequestBody Users Users) {
+		return this.Usersservice.updateUsers(Users);
+	}
+
+	// delete User
+	@DeleteMapping("/Users/{UsersId}")
+	public ResponseEntity<HttpStatus> deleteUsers(@PathVariable String UsersId) {
 		try {
-			this.courseservice.deleteCourse(Long.parseLong(courseId));
+			this.Usersservice.deleteUsers(Long.parseLong(UsersId));
 			return new ResponseEntity<>(HttpStatus.OK);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
 }
