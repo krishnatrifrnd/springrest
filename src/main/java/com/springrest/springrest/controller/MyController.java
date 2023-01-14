@@ -24,31 +24,31 @@ public class MyController {
 	private UsersService Usersservice;
 
 	// Get the User
-	@GetMapping("/Users")
+	@GetMapping("/users")
 	public List<Users> getUserss() {
 		return this.Usersservice.getUserss();
 	}
 
 	// get single User
-	@GetMapping("/Users/{UsersId}")
+	@GetMapping("/users/{usersId}")
 	public Optional<Users> getUsers(@PathVariable String UsersId) {
 		return this.Usersservice.getUsers(Long.parseLong(UsersId));
 	}
 
 	// Create new User
-	@PostMapping(path = "/Users", consumes = "application/json")
+	@PostMapping(path = "/users", consumes = "application/json")
 	public Users addUsers(@RequestBody Users Users) {
 		return this.Usersservice.addUsers(Users);
 	}
 
 	// Update User
-	@PutMapping("/Users")
+	@PutMapping("/users")
 	public Users updateUsers(@RequestBody Users Users) {
 		return this.Usersservice.updateUsers(Users);
 	}
 
 	// delete User
-	@DeleteMapping("/Users/{UsersId}")
+	@DeleteMapping("/users/{usersId}")
 	public ResponseEntity<HttpStatus> deleteUsers(@PathVariable String UsersId) {
 		try {
 			this.Usersservice.deleteUsers(Long.parseLong(UsersId));
